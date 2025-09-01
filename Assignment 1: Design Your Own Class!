@@ -1,0 +1,35 @@
+# Base class
+class Device:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+
+    def device_info(self):
+        return f"{self.brand} {self.model}"
+
+
+# Inherited class
+class Smartphone(Device):
+    def __init__(self, brand, model, os, storage):
+        super().__init__(brand, model)   # inherit brand & model
+        self.os = os
+        self.storage = storage
+
+    def make_call(self, number):
+        return f"📞 Calling {number} from {self.device_info()}"
+
+    def install_app(self, app_name):
+        return f"📲 Installing {app_name} on {self.device_info()}"
+
+    def device_info(self):
+        # Polymorphism (overrides base method)
+        return f"{self.brand} {self.model} running {self.os} with {self.storage}GB storage"
+
+
+# Create objects with unique values
+phone1 = Smartphone("Apple", "iPhone 14", "iOS", 128)
+phone2 = Smartphone("Samsung", "Galaxy S23", "Android", 256)
+
+print(phone1.device_info())
+print(phone1.make_call("123-456-7890"))
+print(phone2.install_app("WhatsApp"))
